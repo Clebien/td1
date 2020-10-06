@@ -1,0 +1,242 @@
+@startuml
+
+title __GENERAL's Class Diagram__\n
+
+  namespace td1.refactor.api {
+    namespace general {
+      abstract class td1.refactor.api.general.Burger {
+          ~ items : List<FoodProduct>
+          ~ name : String
+          + calories()
+          + calories_per_100g()
+          + price()
+          + toString()
+          + weight()
+          # Burger()
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      interface td1.refactor.api.general.Burger.BurgerBuilder {
+          {abstract} + cook()
+          {abstract} + items()
+          {abstract} + name()
+          {abstract} + with_cheese()
+          {abstract} + with_onions()
+          {abstract} + with_sauce()
+          {abstract} + with_tomato()
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      interface td1.refactor.api.general.BurgerRestaurant {
+          {abstract} + order_menu()
+          {abstract} + order_personal()
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      class td1.refactor.api.general.Cheddar {
+          - BASE_PRICE : double
+          - weight : double
+          + Cheddar()
+          + calories_per_100g()
+          + price()
+          + toString()
+          + weight()
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      class td1.refactor.api.general.DeepFriedOnions {
+          - BASE_PRICE : double
+          - weight : double
+          + DeepFriedOnions()
+          + calories_per_100g()
+          + price()
+          + toString()
+          + weight()
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      interface td1.refactor.api.general.FoodConstituent {
+          {abstract} + calories_per_100g()
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      interface td1.refactor.api.general.FoodProduct {
+          + calories()
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      class td1.refactor.api.general.Meat {
+          - weight : double
+          + Meat()
+          + calories_per_100g()
+          + price()
+          + toString()
+          + weight()
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      enum MeatType {
+        BEEF
+        WHITEFISH
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      enum MenuType {
+        CHEESE_MENU
+        FISH_MENU
+        MEAT_MENU
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      interface td1.refactor.api.general.Product {
+          {abstract} + price()
+          {abstract} + weight()
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      interface td1.refactor.api.general.Restaurant {
+          {abstract} + sortir_pour_un_burger()
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      enum RestaurantType {
+        BIG_BURGER
+        MAC_DEAU
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      class td1.refactor.api.general.Sauce {
+          {static} - BASE_PRICE : double
+          - weight : double
+          + Sauce()
+          + calories_per_100g()
+          + price()
+          + toString()
+          + weight()
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      enum SauceType {
+        BARBECUE
+        BEARNAISE
+        BURGER
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      enum Size {
+        BIG
+        MEDIUM
+        SMALL
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      enum Tariff {
+        CHEAP
+        EXPENSIVE
+      }
+    }
+  }
+  
+
+  namespace td1.refactor.api {
+    namespace general {
+      class td1.refactor.api.general.Tomato {
+          - BASE_PRICE : double
+          - weight : double
+          + Tomato()
+          + calories_per_100g()
+          + price()
+          + toString()
+          + weight()
+      }
+    }
+  }
+  
+
+  td1.refactor.api.general.Burger .up.|> FoodProduct
+  td1.refactor.api.general.Burger +-down- td1.refactor.api.general.Burger.BurgerBuilder
+  td1.refactor.api.general.Cheddar .up.|> FoodProduct
+  td1.refactor.api.general.DeepFriedOnions .up.|> FoodProduct
+  td1.refactor.api.general.Meat .up.|> FoodProduct
+  td1.refactor.api.general.Meat o-- td1.refactor.api.general.Meat.MeatType : type
+  td1.refactor.api.general.Meat +-down- td1.refactor.api.general.Meat.MeatType
+  td1.refactor.api.general.Meat.MeatType .up.|> FoodConstituent
+  td1.refactor.api.general.Sauce .up.|> FoodProduct
+  td1.refactor.api.general.Sauce o-- td1.refactor.api.general.Sauce.SauceType : type
+  td1.refactor.api.general.Sauce +-down- td1.refactor.api.general.Sauce.SauceType
+  td1.refactor.api.general.Sauce.SauceType .up.|> FoodConstituent
+  td1.refactor.api.general.Tomato .up.|> FoodProduct
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
